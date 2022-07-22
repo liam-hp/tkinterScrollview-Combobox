@@ -22,6 +22,7 @@ canvas.configure(yscrollcommand=scrolly.set)
 canvas.bind('<Configure>', lambda e: canvas.configure(scrollregion = canvas.bbox("all")))
 def _on_mouse_wheel(event):
     canvas.yview_scroll(-1 * int((event.delta / 120)), "units")
+    w.event_generate('<Escape>') # close the combobox listbox component if the mouse stops hovering over it
 canvas.bind_all("<MouseWheel>", _on_mouse_wheel)
 w = Frame(canvas,width=width,height=height)
 w.place(x=0,y=0)
@@ -44,7 +45,6 @@ def on_enter(e):
     w.bind_all("<MouseWheel>", dontscroll)
 def on_leave(e):
     w.bind_all("<MouseWheel>", _on_mouse_wheel)
-    w.event_generate('<Escape>') # close the combobox listbox component if the mouse stops hovering over it
 
 # while hovering over a listbox, dont scroll the canvas on mousewheel, otherwise do
 w.bind_class('Listbox', '<Enter>',
