@@ -44,6 +44,7 @@ def on_enter(e):
     w.bind_all("<MouseWheel>", dontscroll)
 def on_leave(e):
     w.bind_all("<MouseWheel>", _on_mouse_wheel)
+    w.event_generate('<Escape>') # close the combobox listbox component if the mouse stops hovering over it
 
 # while hovering over a listbox, dont scroll the canvas on mousewheel, otherwise do
 w.bind_class('Listbox', '<Enter>',
